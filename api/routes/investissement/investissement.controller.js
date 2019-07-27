@@ -30,9 +30,19 @@ const addMany = investissements =>
 
     InvestissementModel.create(newInverstissements, (err, investissements) => {
       if (err) return reject(err);
-      resolve(investissements);
+      return resolve(investissements);
+    });
+  });
+
+const find = ({ key, value }) =>
+  new Promise((resolve, reject) => {
+    const test = { [key]: value };
+
+    InvestissementModel.find(test, (err, investissements) => {
+      if (err) return reject(err);
+      return resolve(investissements);
     });
   });
 
 // Exports
-module.exports = { add, addMany };
+module.exports = { add, addMany, find };

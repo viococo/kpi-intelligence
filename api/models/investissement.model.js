@@ -13,15 +13,15 @@ const investissementSchema = new Schema({
   lycee: String,
   notification_du_marche: Date,
   codeuai: String,
-  longitude: mongoose.Decimal128,
+  longitude: Number,
   etat_d_avancement: String,
-  montant_des_ap_votes_en_meu: mongoose.Decimal128,
+  montant_des_ap_votes_en_meu: Number,
   cao_attribution: Date,
-  latitude: mongoose.Decimal128,
+  latitude: Number,
   maitrise_d_oeuvre: String,
   mode_de_devolution: String,
   annee_d_individualisation: String,
-  enveloppe_prev_en_meu: mongoose.Decimal128
+  enveloppe_prev_en_meu: Number
 });
 
 // Export

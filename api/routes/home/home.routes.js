@@ -18,7 +18,7 @@ class HomeRouterClass {
 
   routes() {
     // Remplissage de la BDD
-    homeRouter.get("/init", (req, res) => {
+    homeRouter.post("/init", (req, res) => {
       isInit().then(isInit => {
         if (isInit) sendApiErrorResponse(res, "La BDD est déjà remplit");
         init().then(() =>

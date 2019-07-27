@@ -2,7 +2,11 @@
 //// NodeJS
 const { Router } = require("express");
 //// Interne
-const { sendApiSuccessResponse } = require("../../services/db.service");
+const {
+  sendApiSuccessResponse,
+  sendApiErrorResponse
+} = require("../../services/response.service");
+const { find } = require("./investissement.controller");
 //
 
 //Initiation routeur
@@ -16,22 +20,25 @@ class InvestissementRouterClass {
     // Recherche par avancement
     investissementRouter.get("/avancement/:avancement", (req, res) => {
       const { avancement } = req.params;
-      console.log(avancement);
-      sendApiSuccessResponse(res, { avancement });
+      find({ key: "etat_d_avancement", value: avancement })
+        .then(data => sendApiSuccessResponse(res, data))
+        .catch(err => sendApiErrorResponse(err));
     });
 
     // Recherche par ville
     investissementRouter.get("/ville/:ville", (req, res) => {
       const { ville } = req.params;
-      console.log(ville);
-      sendApiSuccessResponse(res, { ville });
+      find({ key: "ville", value: ville })
+        .then(data => sendApiSuccessResponse(res, data))
+        .catch(err => sendApiErrorResponse(err));
     });
 
     // Recherche par id
     investissementRouter.get("/:id", (req, res) => {
       const { id } = req.params;
-      console.log(id);
-      sendApiSuccessResponse(res, { id });
+      find({ key: "id", value: id })
+        .then(data => sendApiSuccessResponse(res, data))
+        .catch(err => sendApiErrorResponse(err));
     });
   }
 
