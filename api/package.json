@@ -1,0 +1,20 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "Violaine Bodolec",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon server.js",
+    "serveo": "ssh -R kpi-api:80:localhost:4000 serveo.net"
+  },
+  "dependencies": {
+    "babel": "^6.23.0",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
