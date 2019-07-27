@@ -3,9 +3,16 @@
 import React, { Component } from "react";
 import { Card, CardBody } from "reactstrap";
 import { Route, Redirect } from "react-router-dom";
+import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
+
 //// Interne
 import { api } from "../../utils/api";
 //
+
+const Map = ReactMapboxGl({
+  accessToken:
+    "pk.eyJ1IjoidmlvY29jbyIsImEiOiJjanlsdWZhdWQwMjhqM2Ntb3Nxbjc4dmY4In0.2vuQdfm1eLW99_iSzfNajA"
+});
 
 class Details extends Component {
   state = {};
@@ -55,8 +62,8 @@ class Details extends Component {
           render={() => !titreoperation && <Redirect to="/" />}
         />
         <h1 className="mb-4 text-center mx-auto">{titreoperation}</h1>
-        <div className="d-flex mb-3">
-          <Card className="mr-3 flex-fill">
+        <div className="d-sm-flex mb-3">
+          <Card className="mr-sm-3 mb-3 m-sm-0 flex-fill">
             <CardBody>
               <strong>Code UAI:</strong> {codeuai}
               <br />
@@ -80,8 +87,28 @@ class Details extends Component {
             </CardBody>
           </Card>
         </div>
+        {longitude && latitude && (
+          <Card className="mb-3">
+            <Map
+              style="mapbox://styles/mapbox/streets-v9"
+              containerStyle={{
+                height: "500px"
+              }}
+              center={[longitude, latitude]}
+            >
+              <Layer
+                type="symbol"
+                id="marker"
+                layout={{ "icon-image": "marker-15" }}
+                style={{}}
+              >
+                <Feature coordinates={[longitude, latitude]} />
+              </Layer>
+            </Map>
+          </Card>
+        )}
 
-        <Card>
+        <Card className="mt-3">
           <CardBody>
             <strong>Mandataire:</strong> {mandataire}
             <br />

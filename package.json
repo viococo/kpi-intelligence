@@ -1,0 +1,16 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "Violaine Bodolec",
+  "license": "MIT",
+  "scripts": {
+    "api": "cd ./api && yarn start",
+    "app": "cd ./app && yarn start",
+    "dev": "concurrently -n API,APP \"yarn api\" \"yarn app\"",
+    "startDev": "yarn && cd ./api && yarn && cd ../app && yarn && cd ../ && yarn dev"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.1"
+  }
+}

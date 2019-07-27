@@ -4,9 +4,10 @@ const mongoose = require("mongoose");
 // Configuration
 const initClient = () => {
   return new Promise((resolve, reject) => {
+    const url = "http://mongodb://localhost/kpi-violaine";
     mongoose
-      .connect(process.env.MONGO_URL, { useNewUrlParser: true })
-      .then(db => resolve({ db: db, url: process.env.MONGO_URL }))
+      .connect(url, { useNewUrlParser: true })
+      .then(db => resolve({ db: db, url: url }))
       .catch(error => reject(`MongoDB not connected`, error));
   });
 };
