@@ -2,4 +2,26 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  color: #4e4e4e;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000;
+  max-width: 600px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #000;
+}
+
+.layout {
+  max-width: 1080px;
+}
+
+.ReactTable .rt-thead .rt-th {
+  font-weight: bold;
+  padding: 1rem 0;
 }

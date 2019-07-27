@@ -16,9 +16,10 @@ const homeRouter = Router();
 class HomeRouterClass {
   routes() {
     // Remplissage de la BDD
-    homeRouter.get("/init", (req, res) => {
+    homeRouter.post("/init", (req, res) => {
       isInit().then(isInit => {
-        if (isInit) sendApiErrorResponse(res, "La BDD est déjà remplit");
+        if (isInit)
+          return sendApiSuccessResponse(res, "La BDD est déjà remplit");
         init().then(() =>
           sendApiSuccessResponse(res, "BDD remplit avec succes")
         );
