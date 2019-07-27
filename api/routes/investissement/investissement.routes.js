@@ -27,8 +27,9 @@ class InvestissementRouterClass {
     investissementRouter.get("/", (req, res) => {
       const { avancement, ville } = req.query;
       const query = {};
-      if (avancement.trim().length) query.etat_d_avancement = avancement.trim();
-      if (ville.trim().length) query.ville = ville.trim();
+      if (avancement && avancement.trim().length)
+        query.etat_d_avancement = avancement.trim();
+      if (ville && ville.trim().length) query.ville = ville.trim();
       find(query)
         .then(data => sendApiSuccessResponse(res, null, data))
         .catch(err => sendApiErrorResponse(res, undefined, err));
