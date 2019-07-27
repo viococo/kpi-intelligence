@@ -34,11 +34,9 @@ const addMany = investissements =>
     });
   });
 
-const find = ({ key, value }) =>
+const find = filter =>
   new Promise((resolve, reject) => {
-    const test = { [key]: value };
-
-    InvestissementModel.find(test, (err, investissements) => {
+    InvestissementModel.find(filter, (err, investissements) => {
       if (err) return reject(err);
       return resolve(investissements);
     });

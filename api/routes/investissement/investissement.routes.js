@@ -14,31 +14,36 @@ const investissementRouter = Router();
 
 // Définition des routes
 class InvestissementRouterClass {
-  constructor() {}
-
   routes() {
     // Recherche par avancement
     investissementRouter.get("/avancement/:avancement", (req, res) => {
       const { avancement } = req.params;
-      find({ key: "etat_d_avancement", value: avancement })
+      find({ etat_d_avancement: avancement })
         .then(data => sendApiSuccessResponse(res, data))
-        .catch(err => sendApiErrorResponse(err));
+        .catch(err => sendApiErrorResponse(res, undefined, err));
     });
 
     // Recherche par ville
     investissementRouter.get("/ville/:ville", (req, res) => {
       const { ville } = req.params;
-      find({ key: "ville", value: ville })
+      find({ ville })
         .then(data => sendApiSuccessResponse(res, data))
-        .catch(err => sendApiErrorResponse(err));
+        .catch(err => sendApiErrorResponse(res, undefined, err));
     });
 
     // Recherche par id
     investissementRouter.get("/:id", (req, res) => {
       const { id } = req.params;
-      find({ key: "id", value: id })
+      find({ id })
         .then(data => sendApiSuccessResponse(res, data))
-        .catch(err => sendApiErrorResponse(err));
+        .catch(err => sendApiErrorResponse(res, undefined, err));
+    });
+
+    // Retourne tous les investissements
+    investissementRouter.get("/", (req, res) => {
+      find()
+        .then(data => sendApiSuccessResponse(res, data))
+        .catch(err => sendApiErrorResponse(res, undefined, err));
     });
   }
 

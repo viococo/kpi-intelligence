@@ -3,7 +3,16 @@ const fs = require("file-system");
 const investissementController = require("../investissement/investissement.controller");
 
 // Fonctions
-const isInit = () => new Promise((resolve, reject) => resolve());
+const isInit = () =>
+  new Promise((resolve, reject) => {
+    investissementController
+      .find()
+      .then(data => {
+        if (data.length > 0) return resolve(true);
+        return resolve(false);
+      })
+      .catch(err => reject(err));
+  });
 const init = () =>
   new Promise((resolve, reject) => {
     let data = fs.readFileSync("./data/data.json");

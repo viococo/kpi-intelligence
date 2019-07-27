@@ -1,5 +1,9 @@
 // Définitions des services
-const sendApiErrorResponse = (response, errorMessage, error) => {
+const sendApiErrorResponse = (
+  response,
+  errorMessage = "Une erreur est survenue",
+  error = true
+) => {
   return response.status(500).json({
     message: errorMessage,
     error,
