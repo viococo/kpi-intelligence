@@ -2,7 +2,7 @@
 //// NodeJS
 const { Router } = require("express");
 //// Interne
-const { sendApiSuccessResponse } = require("../../services");
+const { sendApiSuccessResponse } = require("../../services/db.service");
 //
 
 //Initiation routeur
@@ -13,11 +13,6 @@ class InvestissementRouterClass {
   constructor() {}
 
   routes() {
-    // Remplissage de la BDD
-    investissementRouter.post("/init", (req, res) => {
-      sendApiSuccessResponse(res, { message: "init" });
-    });
-
     // Recherche par avancement
     investissementRouter.get("/avancement/:avancement", (req, res) => {
       const { avancement } = req.params;

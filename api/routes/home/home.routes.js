@@ -2,7 +2,11 @@
 //// NodeJS
 const { Router } = require("express");
 //// Interne
-const { sendApiSuccessResponse } = require("../../services");
+const {
+  sendApiSuccessResponse,
+  sendApiErrorResponse
+} = require("../../services/response.service");
+const { init, isInit } = require("./home.controller");
 //
 
 //Initiation routeur
@@ -13,8 +17,19 @@ class HomeRouterClass {
   constructor() {}
 
   routes() {
+    // Remplissage de la BDD
+    homeRouter.get("/init", (req, res) => {
+      isInit().then(isInit => {
+        if (isInit) sendApiErrorResponse(res, "La BDD est déjà remplit");
+        init().then(() =>
+          sendApiSuccessResponse(res, "BDD remplit avec succes")
+        );
+      });
+    });
+
+    // Home
     homeRouter.get("/", (req, res) => {
-      sendApiSuccessResponse(res, { message: "Bienvenue sur l'API" });
+      sendApiSuccessResponse(res, "Bienvenue sur l'API");
     });
   }
 
