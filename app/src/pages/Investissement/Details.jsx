@@ -90,7 +90,7 @@ class Details extends Component {
         {longitude && latitude && (
           <Card className="mb-3">
             <Map
-              style="mapbox://styles/mapbox/streets-v9"
+              style={`mapbox://styles/mapbox/streets-v9`}
               containerStyle={{
                 height: "500px"
               }}
